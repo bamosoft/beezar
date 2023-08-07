@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           // primaryColor: kPrimaryColor,
           ),
-      initialRoute: '/signup',
+      home: LogIn(),
       getPages: [
         GetPage(name: '/login', page: () => LogIn()),
         GetPage(name: '/signup', page: () => SignupPage()),

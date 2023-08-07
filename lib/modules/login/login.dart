@@ -1,22 +1,16 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, must_be_immutable
 
 import 'package:beezar/components/custom_btn.dart';
 import 'package:beezar/components/custom_textfeild1.dart';
-import 'package:beezar/modules/signup/signup.dart';
+import 'package:beezar/modules/login/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class LogIn extends StatefulWidget {
-  @override
-  State<LogIn> createState() => _LogInState();
-}
-
-class _LogInState extends State<LogIn> {
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+class LogIn extends StatelessWidget {
+  Loginontroller loginontroller = Get.put(Loginontroller());
   var formKey = GlobalKey<FormState>();
-  bool passwordVisible = false;
-  bool Issecure = true;
 
+  LogIn({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -91,7 +85,7 @@ class _LogInState extends State<LogIn> {
                                 const Icon(Icons.email),
                                 null,
                                 false,
-                                emailController,
+                                loginontroller.emailController,
                                 (value) {}),
                           ),
                           Padding(
@@ -105,19 +99,16 @@ class _LogInState extends State<LogIn> {
                                 const Icon(Icons.lock),
                                 IconButton(
                                   icon: Icon(
-                                    passwordVisible
+                                    loginontroller.passwordVisible
                                         ? Icons.visibility
                                         : Icons.visibility_off,
                                   ),
                                   onPressed: () {
-                                    setState(() {
-                                      Issecure = !Issecure;
-                                      passwordVisible = !passwordVisible;
-                                    });
+                                    loginontroller.changeState();
                                   },
                                 ),
-                                Issecure,
-                                passwordController,
+                                loginontroller.Issecure,
+                                loginontroller.passwordController,
                                 (value) {}),
                           ),
                           Padding(
@@ -148,12 +139,11 @@ class _LogInState extends State<LogIn> {
                             ),
                             child: CustomBtn(
                               onTapBtn: () {
-                                if (formKey.currentState!.validate()) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => SignupPage()));
-                                }
+                                // if (formKey.currentState!.validate()) {
+                                loginontroller.LoginOnClick();
+
+                                // Get.toNamed('/signup');
+                                // }
                               },
                               btnText: 'تأكيد',
                             ),
@@ -174,13 +164,7 @@ class _LogInState extends State<LogIn> {
                                       color: Colors.black),
                                 ),
                                 TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SignupPage()));
-                                  },
+                                  onPressed: () => Get.toNamed('/signup'),
                                   child: const Text('سجل الآن',
                                       style: TextStyle(
                                           fontSize: 15,

@@ -5,12 +5,12 @@ class FormFields extends StatefulWidget {
   TextEditingController textFieldController = TextEditingController();
   dynamic prefix;
   dynamic suffix;
-  String myInput ;
+  String myInput;
   bool IsObsecure;
   var onchange;
 
   FormFields(this.myInput, this.prefix, this.suffix, this.IsObsecure,
-      this.textFieldController,this.onchange);
+      this.textFieldController, this.onchange);
 
   @override
   State<FormFields> createState() => _FormFieldsState();
@@ -37,9 +37,9 @@ class _FormFieldsState extends State<FormFields> {
           suffixIcon: widget.suffix,
           filled: true,
           fillColor: Colors.white,
-          floatingLabelStyle:
-          const TextStyle(color: Color.fromRGBO(13, 6, 88, 0.8),fontFamily: "ca1"),
-          labelStyle: TextStyle(color: Colors.black,fontFamily: 'ca1'),
+          floatingLabelStyle: const TextStyle(
+              color: Color.fromRGBO(13, 6, 88, 0.8), fontFamily: "ca1"),
+          labelStyle: TextStyle(color: Colors.black, fontFamily: 'ca1'),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               width: 2,
